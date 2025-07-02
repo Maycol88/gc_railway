@@ -1,11 +1,6 @@
 <?php
+require_once __DIR__ . '/../cors.php';
 require_once '../config/db.php';
-// Permite acesso de qualquer origem (CORS)
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 
 
 if (!isset($_GET['user_id'])) {

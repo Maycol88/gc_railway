@@ -1,10 +1,13 @@
+// File: usuarios/remover_user.php
 <?php
+
+require_once __DIR__ . '/../cors.php';
 // Conexão com o banco
 require_once("../config/db.php"); // Ajuste o caminho conforme sua estrutura
-// remover_user.php
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: https://gcgit.vercel.app");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
     header("Content-Type: application/json");
