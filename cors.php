@@ -1,18 +1,24 @@
 <?php
-// Permite requisições do domínio frontend (coloque sua URL do Vercel aqui)
-header("Access-Control-Allow-Origin: https://gcgit.vercel.app");
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowed_origins = [
+  'https://gcgit.vercel.app',
+  'http://localhost:5173' // apenas para testes locais
+];
 
-// Permite os métodos HTTP usados pela sua API
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Vary: Origin"); // ajuda no cache CORS
+}
+
+// Métodos e headers permitidos
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-
-// Permite os headers que sua aplicação vai usar
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-// Permite enviar cookies ou credenciais (se usar)
+// Para testes com cookies/autenticação
 // header("Access-Control-Allow-Credentials: true");
 
-// Responde a requisições OPTIONS (preflight) imediatamente
+// Pré-resposta OPTIONS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
+    http_response_code(204);
     exit();
 }
